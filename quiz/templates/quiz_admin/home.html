@@ -12,7 +12,7 @@
         <!--Font Link-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@800&display=swap" rel="stylesheet">
- 
+    
       </head>
 <body>
   <div class="nav-bar">
@@ -20,17 +20,17 @@
 
       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <h3>Online Quiz  {{ user.username|default:'Guest' }}!</h3>
+          </li>
             <li class="nav-item active">
-          <a class="nav-link active" aria-current="page" href="#">Home</a></li>
+          <a class="nav-link active" aria-current="page" href="{% url 'admin_dashboard' %}">Home</a></li>
           <li class="nav-item">
        
-          <a class="nav-link" href="#">Add quiz</a>
+          <a class="nav-link" href="{% url 'admin_add_quiz' %}">Add quiz</a>
 </li>
-          <li class="nav-item">
-          <a class="nav-link" href="#">Add question</a></li>
-          <li class="nav-item">
-          <a class="nav-link" href="#">View Quiz</a>   
-         </li></ul>
+          
+         </ul>
         </div>
         <div class="navbar-collapse collapse w-150 order-2 dual-collapse2">
           <ul class="navbar-nav ml-auto">
@@ -43,6 +43,11 @@
    
 </nav>
 </div>
+<div class="content">
 
+  {% block content %}
+
+  {% endblock content %}
+</div>
 </body>
 </html>

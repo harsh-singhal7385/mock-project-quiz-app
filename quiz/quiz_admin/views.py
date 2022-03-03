@@ -8,4 +8,6 @@ def login_admin(request):
 
 def home_admin(request):
     return render(request, 'quiz_admin/home.html')
+def admin_dashboard(request):
+    return render(request,'quiz_admin/dashboard.html')
 # Create your views here.

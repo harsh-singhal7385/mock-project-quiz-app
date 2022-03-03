@@ -15,9 +15,10 @@
     
       </head>
 <body>
-    <div class="container" style="margin-top: 30px;width: 500px;border-color:black;">
+    <div class="container" style="margin-top: 30px;width: 500px;border-color:rgb(255, 255, 255);">
     <form action="" method="POST" >
-        <h1>Admin Login</h1><br>
+     
+        <h1 style="text-align: center;font-style: italic;text-decoration: underline;">Admin Login</h1><br>
         {% csrf_token %}
         <div class="form-group">
          
@@ -29,7 +30,7 @@
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
        <br>
-        <button type="submit" class="btn btn-light" ><a href="{% url 'home' %}">Submit</a></button>
+        <button type="submit" style="text-align: center;"class="btn btn-light" aria-pressed="true"><a href="{% url 'home' %}">Submit</a></button>
       </form>
 </div>
 </body>
