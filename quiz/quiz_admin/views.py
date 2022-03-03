@@ -10,4 +10,7 @@ def home_admin(request):
     return render(request, 'quiz_admin/home.html')
 def admin_dashboard(request):
     return render(request,'quiz_admin/dashboard.html')
+
+def admin_add_quiz(request):
+    return render(request,'quiz_admin/add_quiz.html')
 # Create your views here.
