@@ -1,37 +1,49 @@
-.container{
-  position:relative;
+.container {
+  position: relative;
   padding: 50px;
-  perspective:1000px;
-  background-color:rgb(27, 26, 26);
-  transform-style:preserve-3d;
- color: aliceblue;
+  perspective: 1000px;
+  background-color: rgb(27, 26, 26);
+  transform-style: preserve-3d;
+  color: aliceblue;
   border-radius: 20px;
-  }
- 
-  .form-group{
-    color: aliceblue;
-    margin-top: 10px;
-  }
-  a:link, a:visited, a:hover, a:active {
+}
 
-      color: rgb(7, 7, 7);
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-  .nav-bar{
-  
-    color: aliceblue;
-  }  
-  .nav-item{
-    padding-right: 30px;
-  }
-  .card {
-    padding: 20px;
-    margin: 20px;
-    
-    display: inline-block;
-    box-shadow: 10px 10px 5px rgb(82, 115, 126);
-    border-radius: 5px; 
-  }
+.form-group {
+  color: aliceblue;
+  margin-top: 10px;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: rgb(7, 7, 7);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-bar {
+  color: aliceblue;
+}
+.nav-item {
+  padding-right: 30px;
+}
+.card {
+  padding: 20px;
+  margin: 20px;
+
+  display: inline-block;
+  box-shadow: 10px 10px 5px rgb(82, 115, 126);
+  border-radius: 5px;
+}
+.cropped {
+  width: 200px; /* width of container */
+  height: 400px; /* height of container */
+  object-fit: cover;
+  /* border: 1px solid black; */
+}
+.resize {
+  width: 200px;
+  height: 400px;
+  object-fit: contain;
+}
