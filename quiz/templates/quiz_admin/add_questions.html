@@ -1,54 +1,112 @@
-{% extends 'quiz_admin/admin_base.html' %} {% load static %} {% block content %}
 
+
+
+{% extends 'quiz_admin/admin_base.html' %} {% block title %}Add Questions{% endblock title %} {% block content%}
+{% load static %}
 <head>
-
-    <link rel="stylesheet" href="{% static 'quiz_admin/css/addquestion.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'quiz_admin/css/addquiz.css' %}" type="text/css">
 </head>
-
-
 <body>
-    <div class="container">
-        <h1>Message</h1>
-        <form action="#" id="contact_form" class="contact-form contact-grid">
+    <!-- <br>
+    <h2 style="text-align:center; color:rgb(250, 250, 250);">ADD QUIZ</h2> -->
+    <div id="container-sm">
+        <span class="input msg">
+            <input type="text" class="input__field" id="input-7"/>
+            <label for="input-7" class="input__label">
+                <span class="input__label-content">Question</span>
+        </label>
+        </span>
+        <span class="input">
+            <input type="text" class="input__field" id="input-1"/>
+            <label for="input-1" class="input__label">
+                <span class="input__label-content">option 1</span>
+        </label>
+        </span>
 
-            <div class="form-field name">
-                <label class="label" for="fname">full name *</label>
-                <input id="fname" type="text" required>
-            </div>
+        <span class="input ">
+            <input type="text" class="input__field " id="input-2" />
+            <label for="input-2" class="input__label">
+                <span class="input__label-content">option 2</span>
+        </label>
+        </span>
 
-            <div class="form-field email">
-                <label class="label" for="email">email *</label>
-                <input id="email" type="email" required>
-            </div>
+        <span class="input col-md-6">
+            <input type="text" class="input__field" id="input-3" />
+            <label for="input-3" class="input__label">
+                <span class="input__label-content">option 3</span>
+        </label>
+        </span>
 
-            <div class="form-field phone">
-                <label class="label" for="phone">phone *</label>
-                <input id="phone" type="tel" required>
-            </div>
+        <span class="input col-md-6">
+            <input type="text" class="input__field" id="input-4" />
+            <label for="input-4" class="input__label">
+                <span class="input__label-content">option 4</span>
+        </label>
+        </span>
+        
+        <span class="input " >
+            <input type="text" class="input__field" id="input-5" />
+            <label for="input-5" class="input__label">
+                <span class="input__label-content">Correct option </span>
+        </label>
+        </span>
+       
+        <span class="input ">
 
-            <div class="form-field subject">
-                <label class="label">subject *</label>
-                <select name="subject" form="contact_form" required>
-          <option value="appointment" selected>Appointment</option>
-          <option value="cancellation">Cancellation</option>
-          <option value="order">Order</option>
-          <option value="other">Other</option>
-        </select>
-            </div>
+            <input type="text" class="input__field" id="input-6" />
+            <label for="input-6" class="input__label">
+                <span class="input__label-content">Marks</span>
+        </label>
+      
+            </span>
+            
+            <button id="send-button" type="button">Create Quiz</button>
 
-            <div class="form-field comment-box">
-                <label class="label">message</label>
-                <textarea name="comment-box" id="message"></textarea>
-            </div>
-
-            <div class="submit-button">
-                <button id="submit-btn" class="btn" type="submit" value="submit" onclick="validateForm()">submit</button>
-            </div>
-
-        </form>
-
+            <a id="header-links" href="{% url 'admin_add_question' %}"><button id="send-button" type="button">Set
+                Questions</button>
+                <span class="input " ></span>
+                <span class="input " ></span>
+                
     </div>
+
+
+
+
+
+    <script>
+        var $input;
+
+        function onInputFocus(event) {
+            var $target = $(event.target);
+            var $parent = $target.parent();
+            $parent.addClass('input--filled');
+        };
+
+        function onInputBlur(event) {
+            var $target = $(event.target);
+            var $parent = $target.parent();
+
+            if (event.target.value.trim() === '') {
+                $parent.removeClass('input--filled');
+            }
+        };
+
+        $(document).ready(function() {
+            $input = $('.input__field');
+
+            // in case there is any value already
+            $input.each(function() {
+                if ($input.val().trim() !== '') {
+                    var $parent = $input.parent();
+                    $parent.addClass('input--filled');
+                }
+            });
+
+            $input.on('focus', onInputFocus);
+            $input.on('blur', onInputBlur);
+        });
+    </script>
 
 </body>
 
-{% endblock %}
+{% endblock content %}

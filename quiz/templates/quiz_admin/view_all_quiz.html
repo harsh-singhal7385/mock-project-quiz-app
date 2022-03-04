@@ -1,11 +1,15 @@
-{% extends 'quiz_admin/admin_base.html' %} {% block content %} {% load static %}
 
+{% extends 'quiz_admin/admin_base.html' %} {% block title %}View Quiz{% endblock title %} {% block content%}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'quiz_admin/css/viewallquiz.css' %}" type="text/css">
+    </head>
 <body>
     <div>
         <div class="row" style="margin: 20px;padding: 30px;border-color:black;">
 
             <div class="col-md-6 col-xl-6">
-                <div class="card  text-white bg-dark order-card">
+                <div class="card  text-white bg-dark order-card" >
                     <div class="card-block">
                         <h3 class="m-b-20"> quiz 1</h3><br>
                         <div class="row">
@@ -45,6 +49,8 @@
             </div>
 
 
+
+            
 
 
 
