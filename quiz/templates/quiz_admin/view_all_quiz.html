@@ -1,59 +1,55 @@
+{% extends 'quiz_admin/admin_base.html' %} {% block content %} {% load static %}
 
-{% extends 'quiz_admin/admin_base.html' %}
-
-{% block content %}
-{% load static %}
-    
 <body>
-    <div >
-    <div class="row"  style="margin: 20px;padding: 30px;border-color:black;"> 
-       
-        <div class="col-md-6 col-xl-6" >
-            <div class="card bg-c-green order-card">
-              <div class="card-block" >
-                <h3 class="m-b-20"> quiz 1</h3>
-                <div class="row">
-                    <div class="col-md-4 col-xl-4">
-                    <h6 class="m-b-20"> Questions: </h6>
-                    </div>
-                    <div class="col-md-4 col-xl-4">
-                        <h6 class="m-b-20"> XX </h6>
-                        </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-xl-4">
-                    <h6 class="m-b-20"> Time: </h6>
-                    </div>
-                    <div class="col-md-4 col-xl-4">
-                        <h6 class="m-b-20"> XX </h6>
-                        </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-xl-3">
-                        <a class="btn" style="color: white; font-size: 13px;background-color:#13e67c ;"type="submit" id="header-links" href="#"> Veiw quiz </a>
-                    </div>
-                    <div class="col-md-3 col-xl-3">
-                        <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;"type="submit" id="header-links" href="#">Leaderboard </a>
-                        </div>
-                    <div class="col-md-3 col-xl-3">
-                        <a class="btn" style="color: white;font-size: 13px; background-color:#fd5e14;"type="submit" id="header-links" href="#"> Update Quiz </a>
-                       
-                        </div>
-                        <div class="col-md-3 col-xl-3">
-                            <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;"type="submit" id="header-links" href="#"> Delete Quiz </a>
-                            </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-         
-         
-         
-      
+    <div>
+        <div class="row" style="margin: 20px;padding: 30px;border-color:black;">
 
+            <div class="col-md-6 col-xl-6">
+                <div class="card  text-white bg-dark order-card">
+                    <div class="card-block">
+                        <h3 class="m-b-20"> quiz 1</h3><br>
+                        <div class="row">
+                            <div class="col-md-4 col-xl-4">
+                                <h6 class="m-b-20"> Questions: </h6>
+                            </div>
+                            <div class="col-md-4 col-xl-4">
+                                <h6 class="m-b-20"> XX </h6>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-4 col-xl-4">
+                                <h6 class="m-b-20"> Time: </h6>
+                            </div>
+                            <div class="col-md-4 col-xl-4">
+                                <h6 class="m-b-20"> XX </h6>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-3 col-xl-3">
+                                <a class="btn" style="color: white; font-size: 13px;background-color:#13e67c ;" type="submit" id="header-links" href="#"> Veiw quiz </a>
+                            </div>
+                            <div class="col-md-3 col-xl-3">
+                                <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#">Leaderboard </a>
+                            </div>
+                            <div class="col-md-3 col-xl-3">
+                                <a class="btn" style="color: white;font-size: 13px; background-color:#fd5e14;" type="submit" id="header-links" href="#"> Update Quiz </a>
+
+                            </div>
+                            <div class="col-md-3 col-xl-3">
+                                <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#"> Delete Quiz </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
     </div>
-  </div>
 </body>
 
 {% endblock content %}

@@ -1,21 +1,14 @@
-a:link {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
+.cropped {
+    width: 200px;
+    /* width of container */
+    height: 400px;
+    /* height of container */
+    object-fit: cover;
+    /* border: 1px solid black; */
 }
 
-a:visited {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: white;
-  background-color: transparent;
-}
-
-a:active {
-  color: white;
-  background-color: transparent;
+.resize {
+    width: 200px;
+    height: 400px;
+    object-fit: contain;
 }
