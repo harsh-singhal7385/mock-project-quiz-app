@@ -1,0 +1,14 @@
+.cropped {
+    width: 200px;
+    /* width of container */
+    height: 400px;
+    /* height of container */
+    object-fit: cover;
+    /* border: 1px solid black; */
+}
+
+.resize {
+    width: 200px;
+    height: 400px;
+    object-fit: contain;
+}
