@@ -1,3 +1,9 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse
 # Create your views here.
+
+def userProfile(request):
+    return render(request,'quiz_user/profile.html')
+
+def questionsPage(request):
+    return render(request, 'quiz_user/questions.html')
