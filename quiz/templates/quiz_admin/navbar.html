@@ -28,18 +28,35 @@
                         </li>
                         <li class="nav-item">
 
-                            <!-- <a class="nav-link" href="{% url 'admin_add_quiz' %}">Add quiz</a> -->
+                            <span class="hello-msg">Hello, {{request.user|default_if_none:"&nbsp;" }}</span>
                         </li>
 
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse w-150 order-2 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <form class="d-flex" id="authstyle">
                                 <a class="btn" style="color: white; background-color: #fd5e14;" type="submit"
                                     id="header-links" href="{% url 'login' %}"> Logout </a>
                             </form>
+                        </li> -->
+                        <li class="nav-item" style="margin-right: 1em;">
+
+
+
+                            <span class="hello-msg"
+                                style="color: aliceblue;font-size: 20px;font-style: italic;">Hello,{{user.username}}</span>
+                        </li>
+                        <li class="nav-item">
+                            <span>
+                                {% if request.user.is_authenticated %}
+                                <a class="btn" style="color: white; background-color: #fd5e14;" type="submit"
+                                    id="header-links" href="{% url 'logout' %}"> Logout </a>
+                               
+                                {% endif %}
+
+                            </span>
                         </li>
                     </ul>
                 </div>

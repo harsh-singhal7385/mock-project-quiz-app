@@ -3,14 +3,15 @@ from django.http import HttpResponse
 from datetime import datetime
 from quiz_admin.models import AddQuiz, Question
 from django.contrib import messages
+from quiz_admin.forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
 def admin_home(request):
-    # print(request.user)
-    # if request.user.is_anonymous:
-    #     return redirect("/quiz_admin")
+    print(request.user)
+    if request.user.is_anonymous:
+        return redirect("/quiz_admin")
     return render(request, 'quiz_admin/home.html')
 
 
@@ -24,12 +25,12 @@ def login_admin(request):
         if user is not None:
             login(request, user)
             print("login Success")
-            return redirect('quiz_admin/admin_home')
+            return redirect('admin_home')
         else:
             messages.info(request, 'Username OR password is incorrect')
             return render(request, 'quiz_admin/login.html')
-
     context = {}
+
     return render(request, 'quiz_admin/login.html', context)
 
 
@@ -79,4 +80,4 @@ def admin_add_question(request, pk):
         print("Question added")
         messages.success(request, 'Your have added a question')
 
-    return render(request, 'quiz_admin/add_questions.html')
+    return render(request, 'quiz_admin/add_questions.html', pk)
