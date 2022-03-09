@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'quiz_admin.apps.QuizAdminConfig',
     'quiz_user.apps.QuizUserConfig',
     'quiz_auth.apps.QuizAuthConfig',
+
+
 ]
 
 MIDDLEWARE = [
@@ -109,14 +111,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS=[
-STATIC_DIR,
- ] 
- 
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

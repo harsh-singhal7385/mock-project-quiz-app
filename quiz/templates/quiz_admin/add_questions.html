@@ -1,15 +1,118 @@
-
-
-
 {% extends 'quiz_admin/admin_base.html' %} {% block title %}Add Questions{% endblock title %} {% block content%}
 {% load static %}
+
 <head>
-<link rel="stylesheet" href="{% static 'quiz_admin/css/addquiz.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'quiz_admin/css/addquestion.css' %}" type="text/css">
 </head>
+
 <body>
+
+
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Add Question </h3>
+
+                        <form class="requires-validation" novalidate method="post"
+                            action="/quiz_admin/admin_add_question/">
+                            {% csrf_token %}
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" name="question" placeholder="Question" required>
+                                <div class="valid-feedback">Question field is valid!</div>
+                                <div class="invalid-feedback">Question field cannot be blank!</div>
+                            </div>
+
+                            <div class="col-md-12 mt-2">
+
+                                <input class="form-control" type="text" name="option_a" placeholder="Option A" required>
+                                <div class="invalid-feedback">Option field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+
+                                <input class="form-control" type="text" name="option_b" placeholder="Option B" required>
+                                <div class="invalid-feedback">Option field cannot be blank!</div>
+
+                                <div>
+                                    <div class="col-md-12 mt-2">
+
+                                        <input class="form-control" type="text" name="option_c" placeholder="Option C"
+                                            required>
+                                        <div class="invalid-feedback">Option field cannot be blank!</div>
+
+                                        <div>
+                                            <div class="col-md-12 mt-2">
+
+                                                <input class="form-control" type="text" name="option_d"
+                                                    placeholder="Option D" required>
+                                                <div class="invalid-feedback">Option field cannot be blank!</div>
+
+                                                <div>
+                                                    <div class="col-md-12 mt-2">
+
+                                                        <input class="form-control" type="text" name="marks"
+                                                            placeholder="Marks" required>
+                                                        <div class="invalid-feedback">Option field cannot be blank!
+                                                        </div>
+
+                                                        <div>
+
+                                                            <div class="col-md-12">
+                                                                <select class="form-select mt-3" name="answer" required>
+                                                                    <option selected disabled value="">Correct Option
+                                                                    </option>
+                                                                    <option value="a">Option A</option>
+                                                                    <option value="b">Option B</option>
+                                                                    <option value="c">Option C</option>
+                                                                    <option value="d">Option D</option>
+                                                                </select>
+                                                                <div class="valid-feedback">You selected a option!</div>
+                                                                <div class="invalid-feedback">Please select a option!
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+
+
+                                                            <div class="form-button mt-3">
+                                                                <button id="submit" type="submit"
+                                                                    class="btn btn-primary">Save and Add another
+                                                                    question</button>
+                                                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        (function () {
+            'use strict'
+            const forms = document.querySelectorAll('.requires-validation')
+            Array.from(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+    </script>
+
     <!-- <br>
     <h2 style="text-align:center; color:rgb(250, 250, 250);">ADD QUIZ</h2> -->
-    <div id="container-sm">
+    <!-- <div id="container-sm">
         <span class="input msg">
             <input type="text" class="input__field" id="input-7"/>
             <label for="input-7" class="input__label">
@@ -106,6 +209,6 @@
         });
     </script>
 
-</body>
+</body> -->
 
-{% endblock content %}
+    {% endblock content %}

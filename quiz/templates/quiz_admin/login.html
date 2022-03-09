@@ -8,11 +8,13 @@
     <!--Css Style -->
     <link rel="stylesheet" href="{% static 'quiz_admin/css/login.css' %}" type="text/css">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!--Font Link-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@800&display=swap" rel="stylesheet">
-  <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@800&display=swap"
+        rel="stylesheet">
+    <title>Login</title>
 </head>
 
 <body>
@@ -22,11 +24,18 @@
             <h1>Log in</h1>
         </div>
         <div class="form">
-            <input placeholder='Email' type="text">
+            <!-- <form action="/quiz_admin"> -->
+            <!-- {% csrf_token %} -->
+            <input placeholder='Username' type="text">
             <input placeholder='Password' type="text">
-            <a href="{% url 'home' %}">
+
+            <!-- <button type="submit"> -->
+            <a href="{% url 'admin_home' %}">
                 <div class="login">Login</div>
             </a>
+            <!-- </button> -->
+
+            <!-- </form> -->
         </div>
         <a href="#">
             <div class="fack"><i class="fa fa-question-circle"></i>Forgot password?</div>
@@ -35,8 +44,8 @@
 
     </div>
     <script>
-        $(document).ready(function() {
-            return $('.login').click(function(event) {
+        $(document).ready(function () {
+            return $('.login').click(function (event) {
                 if (false) {
 
                 } else {
