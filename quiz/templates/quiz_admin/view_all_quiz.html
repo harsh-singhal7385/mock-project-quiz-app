@@ -4,20 +4,23 @@
 <head>
     <link rel="stylesheet" href="{% static 'quiz_admin/css/viewallquiz.css' %}" type="text/css">
     </head>
-<body>
+    <body style="background-color:rgb(26, 25, 25)">
     <div>
-        <div class="row" style="margin: 20px;padding: 30px;border-color:black;">
-
+        <div class="row" style="margin: 20px;padding: 30px;border-color:rgb(58, 49, 49);">
+            {% for data in dataset %}
             <div class="col-md-6 col-xl-6">
-                <div class="card  text-white bg-dark order-card" >
+                <!-- <div class="card  text-white  order-card" style=" background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3gpKRShtg-QyhbafCckP06ILw3l2CsG07mg&usqp=CAU');border-radius: 10px;">
+                     -->
+                     <div class="card  text-white  order-card" style=" background-color: rgb(49, 46, 46);border-radius: 10px;">
+                    
                     <div class="card-block">
-                        <h3 class="m-b-20"> quiz 1</h3><br>
+                        <h3 class="m-b-20" style="text-align:center"> {{data.subject_name}}</h3><br>
                         <div class="row">
                             <div class="col-md-4 col-xl-4">
-                                <h6 class="m-b-20"> Questions: </h6>
+                                <h6 class="m-b-20"> Category: </h6>
                             </div>
                             <div class="col-md-4 col-xl-4">
-                                <h6 class="m-b-20"> XX </h6>
+                                <h6 class="m-b-20"> {{data.category}} </h6>
                             </div>
                         </div><br>
                         <div class="row">
@@ -25,12 +28,12 @@
                                 <h6 class="m-b-20"> Time: </h6>
                             </div>
                             <div class="col-md-4 col-xl-4">
-                                <h6 class="m-b-20"> XX </h6>
+                                <h6 class="m-b-20"> {{data.quiz_time}}  minutes</h6>
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white; font-size: 13px;background-color:#13e67c ;" type="submit" id="header-links" href="#"> Veiw quiz </a>
+                                <a class="btn" style="color: white; font-size: 13px;background-color:#13e67c ;" type="submit" id="header-links" href="{% url 'admin_view_questions' data.id%} "> Veiw quiz </a>
                             </div>
                             <div class="col-md-3 col-xl-3">
                                 <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#">Leaderboard </a>
@@ -43,7 +46,7 @@
                                 <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#"> Delete Quiz </a>
                             </div>
                         </div>
-
+                       
                     </div>
                 </div>
             </div>
@@ -52,7 +55,7 @@
 
             
 
-
+            {% endfor %}
 
         </div>
     </div>

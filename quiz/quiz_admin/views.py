@@ -40,7 +40,10 @@ def logout_admin(request):
 
 
 def admin_view_all_quiz(request):
-    return render(request, 'quiz_admin/view_all_quiz.html')
+    context ={}
+    context["dataset"] = AddQuiz.objects.all()
+    return render(request, 'quiz_admin/view_all_quiz.html',context)
+   
 
 
 def admin_add_quiz(request):
@@ -99,3 +102,8 @@ def admin_update_question(request, pk):
         messages.success(request, 'Your have updated a question')
 
     return render(request, 'quiz_admin/add_questions.html', {})
+
+def admin_view_questions(request, id):
+     context ={}
+     context["dataset"] = Question.objects.all().filter(quizId = id)
+     return render(request, 'quiz_admin/admin_view_questions.html', context)

@@ -12,7 +12,7 @@ class AddQuiz(models.Model):
     # desc = models.TextField(null=True, blank=False)
 
     def __str__(self):
-        return self.subject_name
+        return str(self.id)
 
 
 class Question(models.Model):
