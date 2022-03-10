@@ -16,7 +16,7 @@
                         <h3>Add Question </h3>
 
                         <form class="requires-validation" novalidate method="post"
-                            action="/quiz_admin/admin_add_question/">
+                            action="{% url 'admin_add_question' pk %}">
                             {% csrf_token %}
                             <div class="col-md-12">
                                 <input class="form-control" type="text" name="question" placeholder="Question" required>

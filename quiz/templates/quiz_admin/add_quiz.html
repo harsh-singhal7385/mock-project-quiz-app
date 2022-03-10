@@ -14,13 +14,13 @@
                     <div class="form-items">
                         <h3>Add Quiz </h3>
 
-                        <form class="requires-validation" novalidate method="post" action="/quiz_admin/admin_add_quiz/">
+                        <form class="requires-validation" novalidate method="post" action="{% url 'admin_add_quiz' %}">
                             {% csrf_token %}
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <input class="form-control" type="text" name="quizId" placeholder="Quiz Id" required>
                                 <div class="valid-feedback">quizId field is valid!</div>
                                 <div class="invalid-feedback">quizId field cannot be blank!</div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12 mt-2">
 
