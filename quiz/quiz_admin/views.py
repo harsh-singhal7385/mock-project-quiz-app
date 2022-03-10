@@ -62,8 +62,8 @@ def admin_add_quiz(request):
                           instructor_name=instructor_name, category=category, quiz_time=quiz_time, date=datetime.today())
 
         addQuiz.save()
-        print("Data added")
-        messages.success(request, 'Your Quiz has been created successfully!')
+        # print("Data added")
+        # messages.success(request, 'Your Quiz has been created successfully!')
         return redirect('admin_add_question', pk=addQuiz.id)
 
     return render(request, 'quiz_admin/add_quiz.html')
@@ -71,7 +71,7 @@ def admin_add_quiz(request):
 
 @login_required(login_url='admin_login')
 def admin_add_question(request, pk):
-    if request.method == "POST":
+    if 'save_and_add' in request.POST:
         quizId = AddQuiz.objects.get(id=pk)
         question = request.POST.get('question')
         option_a = request.POST.get('option_a')
@@ -84,9 +84,26 @@ def admin_add_question(request, pk):
                             option_b=option_b, option_c=option_c, option_d=option_d, marks=marks, answer=answer)
 
         question.save()
-        print("Question added")
+        # print("Question added")
        # messages.success(request, 'Your have added a question')
         return redirect('admin_add_question', pk=pk)
+    
+    if 'save' in request.POST:
+        quizId = AddQuiz.objects.get(id=pk)
+        question = request.POST.get('question')
+        option_a = request.POST.get('option_a')
+        option_b = request.POST.get('option_b')
+        option_c = request.POST.get('option_c')
+        option_d = request.POST.get('option_d')
+        marks = request.POST.get('marks')
+        answer = request.POST.get('answer')
+        question = Question(quizId=quizId, question=question, option_a=option_a,
+                            option_b=option_b, option_c=option_c, option_d=option_d, marks=marks, answer=answer)
+
+        question.save()
+        # print("Question added")
+       # messages.success(request, 'Your have added a question')
+        return redirect('admin_view_all_quiz')
 
     context = {'pk': pk}
     return render(request, 'quiz_admin/add_questions.html', context)
@@ -105,7 +122,7 @@ def admin_update_question(request, pk):
         question.answer = request.POST.get('answer')
         question.save()
         print("Question Updated")
-        messages.success(request, 'Your have updated a question')
+        # messages.success(request, 'Your have updated a question')
 
     return render(request, 'quiz_admin/add_questions.html', {})
 
