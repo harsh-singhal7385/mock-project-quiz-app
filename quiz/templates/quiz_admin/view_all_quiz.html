@@ -1,20 +1,23 @@
-
 {% extends 'quiz_admin/admin_base.html' %} {% block title %}View Quiz{% endblock title %} {% block content%}
 {% load static %}
+
 <head>
     <link rel="stylesheet" href="{% static 'quiz_admin/css/viewallquiz.css' %}" type="text/css">
-    </head>
-    <body style="background-color:rgb(26, 25, 25)">
+</head>
+
+<body style="background-color:rgb(26, 25, 25)">
     <div>
         <div class="row" style="margin: 20px;padding: 30px;border-color:rgb(58, 49, 49);">
             {% for data in dataset %}
             <div class="col-md-6 col-xl-6">
                 <!-- <div class="card  text-white  order-card" style=" background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3gpKRShtg-QyhbafCckP06ILw3l2CsG07mg&usqp=CAU');border-radius: 10px;">
                      -->
-                     <div class="card  text-white  order-card" style=" background-color: rgb(49, 46, 46);border-radius: 10px;">
-                    
+                <div class="card  text-white  order-card"
+                    style=" background-color: rgb(49, 46, 46);border-radius: 10px;">
+
                     <div class="card-block">
-                        <h3 class="m-b-20" style="text-align:center"> {{data.subject_name}}</h3><br>
+                        <h3 class="m-b-20" style="text-transform: uppercase;text-align:center;font-family: Times New Roman, Times, serif;font-weight: bold"> {{data.subject_name}}</h3>
+                        <br>
                         <div class="row">
                             <div class="col-md-4 col-xl-4">
                                 <h6 class="m-b-20"> Category: </h6>
@@ -28,32 +31,43 @@
                                 <h6 class="m-b-20"> Time: </h6>
                             </div>
                             <div class="col-md-4 col-xl-4">
-                                <h6 class="m-b-20"> {{data.quiz_time}}  minutes</h6>
+                                <h6 class="m-b-20"> {{data.quiz_time}} minutes</h6>
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white; font-size: 13px;background-color:#13e67c ;" type="submit" id="header-links" href="{% url 'admin_view_questions' data.id%} "> Veiw quiz </a>
+                                <a class="btn" style="color: white; font-size: 13px;background-color:#10e4f3 ;"
+                                    type="submit" id="header-links" href="{% url 'admin_view_questions' data.id%} ">
+                                    Veiw quiz </a>
                             </div>
+                            <!-- <div class="col-md-3 col-xl-3">
+                                <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#">Leaderboard </a> -->
+                            <!-- </div> -->
                             <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#">Leaderboard </a>
-                            </div>
-                            <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white;font-size: 13px; background-color:#fd5e14;" type="submit" id="header-links" href="#"> Update Quiz </a>
+                                <a class="btn" style="color: white;font-size: 13px; background-color:#9822e7;"
+                                    type="submit" id="header-links" href="#"> Update Quiz </a>
 
                             </div>
                             <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#"> Delete Quiz </a>
+                                <a class="btn" style="color: white; font-size: 13px;background-color: #31b816;"
+                                    type="submit" id="header-links" href="{% url 'admin_add_question' data.id%}"> Add
+                                    Question
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-xl-3">
+                                <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;"
+                                    type="submit" id="header-links" href="{% url 'admin_delete_quiz' data.id%}"> Delete
+                                    Quiz </a>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
 
 
 
-            
+
 
             {% endfor %}
 

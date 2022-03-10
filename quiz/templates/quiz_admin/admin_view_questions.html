@@ -1,33 +1,35 @@
-
 {% extends 'quiz_admin/admin_base.html' %} {% block title %}View Questions{% endblock title %} {% block content%}
 {% load static %}
+
 <head>
     <link rel="stylesheet" href="{% static 'quiz_admin/css/viewquestions_admin.css' %}" type="text/css">
-    </head>
+</head>
+
 <body>
     <div>
         <div class="row" style="margin: 20px;padding: 10px;border-color:black;">
+
             {% for data in dataset %}
-           
+
             <div class="row">
-            <div class="container mt-sm-5 my-1">
-                <div class="question ml-sm-5 pl-sm-5 pt-2">
-                    <div class="py-2 h5"><b>Q.{{data.id}}  {{data.question}}</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-xl-4">
-                        <h6 class="m-b-20"> Marks: </h6>
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5"><b>Q {{data.question}}</b></div>
                     </div>
-                    <div class="col-md-4 col-xl-4">
-                        <h6 class="m-b-20"> {{data.marks}}  </h6>
-                    </div>
-                </div><br>
+                    <div class="row">
+                        <div class="col-md-4 col-xl-4">
+                            <h6 class="m-b-20"> Marks: </h6>
+                        </div>
+                        <div class="col-md-4 col-xl-4">
+                            <h6 class="m-b-20"> {{data.marks}} </h6>
+                        </div>
+                    </div><br>
                     <div class="row">
                         <div class="col-md-4 col-xl-4">
                             <h6 class="m-b-20"> Option A: </h6>
                         </div>
                         <div class="col-md-4 col-xl-4">
-                            <h6 class="m-b-20"> {{data.option_a}}  </h6>
+                            <h6 class="m-b-20"> {{data.option_a}} </h6>
                         </div>
                     </div><br>
                     <div class="row">
@@ -59,18 +61,26 @@
                             <h6 class="m-b-20"> Correct Option : </h6>
                         </div>
                         <div class="col-md-4 col-xl-4">
-                            <h6 class="m-b-20"> {{data.answer}}  </h6>
+                            <h6 class="m-b-20"> {{data.answer}} </h6>
                         </div>
                     </div><br>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xl-4">
+                            <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;"
+                                type="submit" id="header-links" href="{% url 'admin_delete_question' data.id%}"> Delete
+                                Question</a>
+
+                        </div>
+                    </div><br>
                 </div>
-                
+
             </div>
 
 
-            
+
 
             {% endfor %}
+
 
         </div>
     </div>

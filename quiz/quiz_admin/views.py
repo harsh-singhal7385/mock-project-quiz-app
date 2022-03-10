@@ -6,6 +6,9 @@ from django.contrib import messages
 from quiz_admin.forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              HttpResponseRedirect)
 
 
 def admin_home(request):
@@ -36,16 +39,17 @@ def login_admin(request):
 
 def logout_admin(request):
     logout(request)
-    return redirect('login')
+    return redirect('admin_login')
 
 
+@login_required(login_url='admin_login')
 def admin_view_all_quiz(request):
-    context ={}
+    context = {}
     context["dataset"] = AddQuiz.objects.all()
-    return render(request, 'quiz_admin/view_all_quiz.html',context)
-   
+    return render(request, 'quiz_admin/view_all_quiz.html', context)
 
 
+@login_required(login_url='admin_login')
 def admin_add_quiz(request):
     if request.method == "POST":
         # quizId = request.POST.get('quizId')
@@ -65,6 +69,7 @@ def admin_add_quiz(request):
     return render(request, 'quiz_admin/add_quiz.html')
 
 
+@login_required(login_url='admin_login')
 def admin_add_question(request, pk):
     if request.method == "POST":
         quizId = AddQuiz.objects.get(id=pk)
@@ -80,15 +85,16 @@ def admin_add_question(request, pk):
 
         question.save()
         print("Question added")
-        messages.success(request, 'Your have added a question')
+       # messages.success(request, 'Your have added a question')
         return redirect('admin_add_question', pk=pk)
 
     context = {'pk': pk}
     return render(request, 'quiz_admin/add_questions.html', context)
 
 
+@login_required(login_url='admin_login')
 def admin_update_question(request, pk):
-    if request.method == "POS":
+    if request.method == "POST":
         question = Question.objects.get(id=pk)
         question.question = request.POST.get('question')
         question.option_a = request.POST.get('option_a')
@@ -103,7 +109,35 @@ def admin_update_question(request, pk):
 
     return render(request, 'quiz_admin/add_questions.html', {})
 
+
+@login_required(login_url='admin_login')
 def admin_view_questions(request, id):
-     context ={}
-     context["dataset"] = Question.objects.all().filter(quizId = id)
-     return render(request, 'quiz_admin/admin_view_questions.html', context)
+    context = {}
+    context["dataset"] = Question.objects.all().filter(quizId=id)
+    return render(request, 'quiz_admin/admin_view_questions.html', context)
+
+
+@login_required(login_url='admin_login')
+def admin_delete_quiz(request, id):
+    context = {}
+    obj = get_object_or_404(AddQuiz, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect('admin_view_all_quiz')
+
+    return render(request, "quiz_admin/delete_view.html", context)
+
+
+@login_required(login_url='admin_login')
+def admin_delete_question(request, id):
+
+    obj = get_object_or_404(Question, id=id)
+
+    quizId = obj.quizId
+    if request.method == "POST":
+        obj.delete()
+        return redirect('admin_view_questions', id=quizId)
+    context = {
+        'quizId': quizId
+    }
+    return render(request, "quiz_admin/delete_question_view.html", context)
