@@ -15,7 +15,7 @@ from django.http import JsonResponse
 count = 0
 
 def registerPage(request):
-
+    
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -23,7 +23,7 @@ def registerPage(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for ' + username)
-
+            
             return redirect('login')
 
     context = {'form': form}
@@ -39,7 +39,7 @@ def login_admin(request):
 
         if user is not None:
             login(request, user)
-            print("login Success")
+            print("login Success",user)
             return redirect('/quiz_user/')
         else:
             messages.info(request, 'Username OR password is incorrect')
@@ -51,20 +51,35 @@ def login_admin(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 def home(request):
+    # print(request.user)
+    # print(request.user.id)
+    # print(request.user.is_authenticated)
     print("inside home of quiz_user")
     print(" quiz_user")
     print("inside home ")
     data = AddCategory.objects.all()
     data1 = AddQuiz.objects.all()
-    context = {
+    
+    
+    if (request.user.is_authenticated):
+        print("innn")
+        context = {
         "data" : data,
-        "data1" : data1
+        "data1" : data1,
+        "user" : request.user
     }
-    return render(request, 'quiz_user/index.html',context)
+        return render(request, 'quiz_user/index.html',context)
+    else:
+        print("outt")
+        context = {
+        "data" : data,
+        "data1" : data1,
+    }
+        return render(request, 'quiz_user/index.html',context)
 
 
 def fields(request, slug):
@@ -74,44 +89,85 @@ def fields(request, slug):
 def showAllQuiz(request):
     data = AddQuiz.objects.all()
     print(data)
-    context = {
-        "data": data
+    if (request.user.is_authenticated):
+       
+        context = {
+        "data" : data,
+        "user" : request.user
     }
-    return render(request, 'quiz_user/showAllQuiz.html', context)
+        return render(request, 'quiz_user/showAllQuiz.html',context)
+    else:
+       
+        
+        return redirect('home')
 
 def showQuiz(request,slug):
     print(slug)
     data = AddQuiz.objects.filter(category = slug).all()
     print(data)
-    context = {
-        "data": data
+    if (request.user.is_authenticated):
+       
+        context = {
+        "data" : data,
+        "user" : request.user
     }
-    return render(request, 'quiz_user/showAllQuiz.html', context)
+        return render(request, 'quiz_user/showAllQuiz.html', context)
+    
+    else:
+       
+        return redirect('home')
+
 
 def userProfile(request):
     getdata = ScoreCard.objects.all()
-    context = {
-        "data" : getdata
+    if (request.user.is_authenticated):
+       
+        context = {
+        "data" : getdata,
+        "user" : request.user
     }
-    return render(request , 'quiz_user/profile.html',context)
+        return render(request , 'quiz_user/profile.html',context)
+    
+    else:
+       
+        return redirect('home')
+
+    
 
 def score(request):
     getdata = ScoreCard.objects.all()
-    context = {
-        "data" : getdata
+
+    if (request.user.is_authenticated):
+       
+        context = {
+        "data" : getdata,
+        "user" : request.user
     }
-    return render(request , 'quiz_user/score.html',context) 
+        return render(request , 'quiz_user/score.html',context)
+    
+    else:
+       
+        return redirect('home')
+
 
 def leaderboard(request):
     getdata = ScoreCard.objects.all()
-    context = {
-        "data" : getdata
+    
+    if (request.user.is_authenticated):
+       
+        context = {
+        "data" : getdata,
+        "user" : request.user
     }
-    return render(request , 'quiz_user/leaderboard.html',context) 
+        return render(request , 'quiz_user/leaderboard.html',context)
+    
+    else:
+ 
+        return redirect('home')
+
 
 def submitAnswers(request):
     if request.method == "GET":
-    # if request.is_ajax():
         score = request.GET.get('score')  ###['score']
         subjectname = request.GET.get('subjectname')  ###['subjectname']
         nosofquestions = request.GET.get('nosofquestions')  ###['nosofquestions']
@@ -121,19 +177,13 @@ def submitAnswers(request):
         
         score_data = ScoreCard.objects.filter(score = score, subject_name = subjectname).all()
         print(score_data)
-        # index = score_data.score
         
-        # context = {
-        #             "finalAnswerSubmit" : score,
-        #             "finalSubjectName" : subjectname,
-        #             "finalNosOfQuestions" : nosofquestions
-        #         }
-        
-        return JsonResponse({
-                'success': True,
-                'url': reverse('score'),
-            })
-    return JsonResponse({ 'success': False })
+        return render(request,'quiz_user/score.html',{"score_data":score_data})
+    #     return JsonResponse({
+    #             'success': True,
+    #             'url': reverse('score'),
+    #         })
+    # return JsonResponse({ 'success': False })
 
 def questionsDemoPage(request):
     
@@ -275,37 +325,41 @@ def questionsDemoPage(request):
 
     
 def questionsPage(request,slug):
-    print("inside questions")
-    total_time = 0
-    answers = {}
-    dat = {}
-    data = QuestionDemo.objects.filter(subject_name = "React").all()
-    count = len(data)
-    sum = 0
-    subject_name = ""
-    j = 1
-    for i in data:
-        sum += i.marks
-        dat = {j : i.answer}
-        answers.update(dat)
-        j+=1
-    
-    duration = AddQuiz.objects.filter(subject_name = "React Beginner").all()
-    for i in duration:
-        total_time = i.quiz_time
-        subject_name = i.subject_name
-    # data=""
-    details = {
-        "name": "ABC XYZ",
-        "subject_name": subject_name,
-        "total_marks": sum,
-        "total_time": total_time
-    }
-    
-    dataJSON = dumps(answers)
-    nosOfQ = dumps(count)
-    subjectName = dumps(subject_name)
-    
+    if (request.user.is_authenticated == False):
+        return redirect('home')
+    else:
+        
+        print("inside questions")
+        total_time = 0
+        answers = {}
+        dat = {}
+        data = QuestionDemo.objects.filter(subject_name = slug).all()
+        count = len(data)
+        sum = 0
+        subject_name = ""
+        j = 1
+        for i in data:
+            sum += i.marks
+            dat = {j : i.answer}
+            answers.update(dat)
+            j+=1
+        
+        duration = AddQuiz.objects.filter(subject_name = slug).all()
+        for i in duration:
+            total_time = i.quiz_time
+            subject_name = i.subject_name
+        # data=""
+        details = {
+            "name": "ABC XYZ",
+            "subject_name": subject_name,
+            "total_marks": sum,
+            "total_time": total_time
+        }
+        
+        dataJSON = dumps(answers)
+        nosOfQ = dumps(count)
+        subjectName = dumps(subject_name)
+        
 
-    context = {"data": data, "details": details, "answers": dataJSON,"nosOfQ" : nosOfQ,"subjectName" :subjectName,"sum" : sum }
-    return render(request, 'quiz_user/questions.html', context)
+        context = {"data": data, "details": details, "answers": dataJSON,"nosOfQ" : nosOfQ,"subjectName" :subjectName,"sum" : sum }
+        return render(request, 'quiz_user/questions.html', context)
