@@ -15,11 +15,11 @@
             <div class="col">
                 <div class="card cardhome">
 
-                    <img src="https://c8.alamy.com/comp/W9C35A/quiz-vector-icon-symbol-creative-sign-from-education-icons-collection-filled-flat-quiz-icon-for-computer-and-mobile-W9C35A.jpg"
-                        class="card-img-top cropped" alt="...">
+                    <img src="{% static 'quiz_admin/img/checklist.png' %}"
+                        class="card-img-top resize" alt="...">
                     <div class="card-body">
                         <div class="text-center">
-                            <button type="button" class="btn btn-success" style="color: white;"><a id="header-links"
+                            <button type="button" class="btn " style="color: white;background-color: #6E61B7;"><a id="header-links"
                                     style="text-decoration: none;color: white;" href="{% url 'admin_add_quiz' %}">Create
                                     New
                                     Quiz</a></button>
@@ -29,11 +29,11 @@
             </div>
             <div class="col">
                 <div class="card cardhome">
-                    <img src="https://cdn-icons.flaticon.com/png/512/5738/premium/5738849.png?token=exp=1646395173~hmac=1c0d4903e7d8c884de30e9b52c86bf6f"
+                    <img src="{% static 'quiz_admin/img/seo.png' %}"
                         class="card-img-top resize " alt="...">
                     <div class="card-body">
                         <div class="text-center">
-                            <button type="button" class="btn btn-info " style="color: white;"><a id="header-links"
+                            <button type="button" class="btn " style="color: white; background-color:#69b2e4;"><a id="header-links"
                                     style="text-decoration: none;color: white;"
                                     href="{% url 'admin_view_all_quiz' %}">View All
                                     Quizes</a></button>

@@ -28,6 +28,14 @@
                         </div><br>
                         <div class="row">
                             <div class="col-md-4 col-xl-4">
+                                <h6 class="m-b-20"> Instructor Name: </h6>
+                            </div>
+                            <div class="col-md-4 col-xl-4">
+                                <h6 class="m-b-20"> {{data.instructor_name}} </h6>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-4 col-xl-4">
                                 <h6 class="m-b-20"> Time: </h6>
                             </div>
                             <div class="col-md-4 col-xl-4">
@@ -36,7 +44,7 @@
                         </div><br>
                         <div class="row">
                             <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white; font-size: 13px;background-color:#10e4f3 ;"
+                                <a class="btn" style="color: rgb(255, 255, 255); font-size: 13px;background-color:#036dcf ;"
                                     type="submit" id="header-links" href="{% url 'admin_view_questions' data.id%} ">
                                     Veiw quiz </a>
                             </div>
@@ -44,8 +52,8 @@
                                 <a class="btn" style="color: white; font-size: 13px;background-color: #ff0000;" type="submit" id="header-links" href="#">Leaderboard </a> -->
                             <!-- </div> -->
                             <div class="col-md-3 col-xl-3">
-                                <a class="btn" style="color: white;font-size: 13px; background-color:#9822e7;"
-                                    type="submit" id="header-links" href="#"> Update Quiz </a>
+                                <a class="btn" style="color: white;font-size: 13px; background-color:#9c33e2;"
+                                    type="submit" id="header-links" href="{% url 'admin_update_quiz' data.id%}"> Update Quiz </a>
 
                             </div>
                             <div class="col-md-3 col-xl-3">

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'quiz_admin.apps.QuizAdminConfig',
     'quiz_user.apps.QuizUserConfig',
     'quiz_auth.apps.QuizAuthConfig',
-
+    'bootstrap_modal_forms',
 
 ]
 

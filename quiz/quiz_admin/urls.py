@@ -16,4 +16,9 @@ urlpatterns = [
          name='admin_delete_quiz'),
     path('admin_delete_question/<id>', views.admin_delete_question,
          name='admin_delete_question'),
+    path('admin_update_question/<id>', views.admin_update_question,
+         name='admin_update_question'),
+    path('admin_update_quiz/<id>', views.admin_update_quiz,
+         name='admin_update_quiz'),
+
 ]

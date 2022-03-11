@@ -1,0 +1,23 @@
+{% extends 'quiz_admin/admin_base.html' %} {% block title %}update question  {% endblock title %} {% block content%}
+{% load static %}
+<body style="background-color: black;">
+    <br>
+    <br>
+    <br>
+    <!-- Create a Form -->
+    <div class="container p-3 my-3 bg-dark  text-white" style="padding:40px;">
+    <div class="form-group">
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        
+        {{ form.as_p }} -->
+
+        <input type="submit" value="Update">
+    </form>
+    
+
+</div>
+</div>
+</body>
+{% endblock content %}

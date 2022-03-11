@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
-
+from .forms import QuestionForm
 
 def admin_home(request):
     print(request.user)
@@ -109,23 +109,6 @@ def admin_add_question(request, pk):
     return render(request, 'quiz_admin/add_questions.html', context)
 
 
-@login_required(login_url='admin_login')
-def admin_update_question(request, pk):
-    if request.method == "POST":
-        question = Question.objects.get(id=pk)
-        question.question = request.POST.get('question')
-        question.option_a = request.POST.get('option_a')
-        question.option_b = request.POST.get('option_b')
-        question.option_c = request.POST.get('option_c')
-        question.option_d = request.POST.get('option_d')
-        question.marks = request.POST.get('marks')
-        question.answer = request.POST.get('answer')
-        question.save()
-        print("Question Updated")
-        # messages.success(request, 'Your have updated a question')
-
-    return render(request, 'quiz_admin/add_questions.html', {})
-
 
 @login_required(login_url='admin_login')
 def admin_view_questions(request, id):
@@ -158,3 +141,46 @@ def admin_delete_question(request, id):
         'quizId': quizId
     }
     return render(request, "quiz_admin/delete_question_view.html", context)
+
+
+@login_required(login_url='admin_login')
+def admin_update_question(request, id):
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(Question, id = id)
+    quizId = obj.quizId
+    # pass the object as instance in form
+    form = QuestionForm(request.POST or None, instance = obj)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect('admin_view_questions', id=quizId)
+ 
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "quiz_admin/update_question_view.html", context)
+
+@login_required(login_url='admin_login')
+def admin_update_quiz(request, id):
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(AddQuiz, id = id)
+    quizId = obj.id
+    # pass the object as instance in form
+    form = QuizForm(request.POST or None, instance = obj)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect('admin_view_all_quiz')
+ 
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "quiz_admin/update_quiz.html", context)
