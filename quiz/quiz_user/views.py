@@ -1,12 +1,18 @@
 import re
+from traceback import print_tb
+from unicodedata import category
 from django.shortcuts import render, redirect, get_list_or_404
 from datetime import datetime
 from django.contrib import messages
+from django.urls import reverse
 from quiz_admin.forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-# Create your views here.
-
+from quiz_admin.models import AddCategory, AddQuiz, QuestionDemo
+from quiz_user.models import ScoreCard,LeaderBoard
+from json import dumps
+from django.http import JsonResponse
+count = 0
 
 def registerPage(request):
 
@@ -49,62 +55,95 @@ def logout_user(request):
 
 
 def home(request):
-    return render(request, 'quiz_user/index.html')
+    print("inside home of quiz_user")
+    print(" quiz_user")
+    print("inside home ")
+    data = AddCategory.objects.all()
+    data1 = AddQuiz.objects.all()
+    context = {
+        "data" : data,
+        "data1" : data1
+    }
+    return render(request, 'quiz_user/index.html',context)
 
 
 def fields(request, slug):
     pass
 
 
-def javascript(request):
-    data = "javascript"
+def showAllQuiz(request):
+    data = AddQuiz.objects.all()
+    print(data)
     context = {
         "data": data
     }
     return render(request, 'quiz_user/showAllQuiz.html', context)
 
-
-def python(request):
-    data = "python"
+def showQuiz(request,slug):
+    print(slug)
+    data = AddQuiz.objects.filter(category = slug).all()
+    print(data)
     context = {
         "data": data
     }
     return render(request, 'quiz_user/showAllQuiz.html', context)
-
-
-def cpp(request):
-    data = "cpp"
-    context = {
-        "data": data
-    }
-    return render(request, 'quiz_user/showAllQuiz.html', context)
-
-
-def java(request):
-    data = "java"
-    context = {
-        "data": data
-    }
-    return render(request, 'quiz_user/showAllQuiz.html', context)
-
 
 def userProfile(request):
-    return render(request, 'quiz_user/profile.html')
+    getdata = ScoreCard.objects.all()
+    context = {
+        "data" : getdata
+    }
+    return render(request , 'quiz_user/profile.html',context)
 
+def score(request):
+    getdata = ScoreCard.objects.all()
+    context = {
+        "data" : getdata
+    }
+    return render(request , 'quiz_user/score.html',context) 
 
-def saveAnswers(request):
-    pass
+def leaderboard(request):
+    getdata = ScoreCard.objects.all()
+    context = {
+        "data" : getdata
+    }
+    return render(request , 'quiz_user/leaderboard.html',context) 
 
+def submitAnswers(request):
+    if request.method == "GET":
+    # if request.is_ajax():
+        score = request.GET.get('score')  ###['score']
+        subjectname = request.GET.get('subjectname')  ###['subjectname']
+        nosofquestions = request.GET.get('nosofquestions')  ###['nosofquestions']
+        
+        score_data = ScoreCard(score = score, subject_name = subjectname)
+        score_data.save()
+        
+        score_data = ScoreCard.objects.filter(score = score, subject_name = subjectname).all()
+        print(score_data)
+        # index = score_data.score
+        
+        # context = {
+        #             "finalAnswerSubmit" : score,
+        #             "finalSubjectName" : subjectname,
+        #             "finalNosOfQuestions" : nosofquestions
+        #         }
+        
+        return JsonResponse({
+                'success': True,
+                'url': reverse('score'),
+            })
+    return JsonResponse({ 'success': False })
 
-def questionsPage(request):
-
+def questionsDemoPage(request):
+    
     details = {
         "name": "ABC XYZ",
         "subject_name": "Django / Flask",
         "total_marks": "10",
         "total_time": "10"
     }
-
+    
     answers = [
 
     ]
@@ -232,4 +271,41 @@ def questionsPage(request):
         },
     ]
     context = {"data": data, "details": details, "answers": answers}
+    return render(request, 'quiz_user/questions.html', context)
+
+    
+def questionsPage(request,slug):
+    print("inside questions")
+    total_time = 0
+    answers = {}
+    dat = {}
+    data = QuestionDemo.objects.filter(subject_name = "React").all()
+    count = len(data)
+    sum = 0
+    subject_name = ""
+    j = 1
+    for i in data:
+        sum += i.marks
+        dat = {j : i.answer}
+        answers.update(dat)
+        j+=1
+    
+    duration = AddQuiz.objects.filter(subject_name = "React Beginner").all()
+    for i in duration:
+        total_time = i.quiz_time
+        subject_name = i.subject_name
+    # data=""
+    details = {
+        "name": "ABC XYZ",
+        "subject_name": subject_name,
+        "total_marks": sum,
+        "total_time": total_time
+    }
+    
+    dataJSON = dumps(answers)
+    nosOfQ = dumps(count)
+    subjectName = dumps(subject_name)
+    
+
+    context = {"data": data, "details": details, "answers": dataJSON,"nosOfQ" : nosOfQ,"subjectName" :subjectName,"sum" : sum }
     return render(request, 'quiz_user/questions.html', context)

@@ -1,6 +1,7 @@
-//     var deadline = new Date("mar 03, 2022 16:25:00").getTime();
+    
     function timer(){
-  
+    
+    
     var minutes_from_user = 10
     var add = 60000*minutes_from_user
     var deadline = new Date().getTime();

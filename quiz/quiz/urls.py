@@ -7,5 +7,5 @@ urlpatterns = [
     path('quiz_admin/', include('quiz_admin.urls')),
     path('quiz_user/', include('quiz_user.urls')),
     path('quiz_auth/', include('quiz_auth.urls')),
-    path('', include('quiz_user.urls')),
+    path('', views.home_main, name="home_main"),
 ]
