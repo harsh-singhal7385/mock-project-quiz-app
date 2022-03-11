@@ -102,7 +102,7 @@
                         finalAnswer++
                     }
                 }
-
+                
                 console.log(1)
           
             
@@ -110,11 +110,11 @@
             document.getElementById('nosofquestions').innerHTML = nosOfQ
             document.getElementById('subjectname').innerHTML = subjectName
        
-
+            
             document.getElementById('main-part').style.display = "none"
             document.getElementById('output').style.display = "block"
         
-
+        
         }
     }
         
@@ -124,31 +124,61 @@
 </head>
 
 <body onload="timer()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/quiz_user/">Quiz</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/quiz_user/">Dashboard</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li> -->
-            </ul>
-            <form class="d-flex">
-              <a href="/quiz_user/profile" data-toggle="tooltip" title="user profile"><img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" width="40vw" height="40vh" class="rounded-circle" alt="..."></a>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-              <p class="user_name_id text-light">fsfsa</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-              <a class="btn btn-outline-danger my-2 my-sm-0" class="btn btn-outline-success" href="/quiz_auth/logout">Logout</a>
-            </form>
-          </div>
+    {% if user.is_authenticated %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light " href="/">QuizApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/leaderboard/">LeaderBoard</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <a href="/quiz_user/profile" data-toggle="tooltip" title="user profile"><img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" width="40vw" height="40vh" class="rounded-circle" alt="..."></a>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <p class="user_name_id text-light">Welcome - {{user}}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <a class="btn btn-outline-danger my-2 my-sm-0" class="btn btn-outline-success" href="/quiz_user/logout">Logout</a>
+          </form>
         </div>
+      </div>
     </nav>
+    
+    {% else %}
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light " href="/">QuizApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/leaderboard/">LeaderBoard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/register/">SignUp</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/login/">Login</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+  
+  {% endif %}
+    
     <div id="main-part">
     <div class="alert alert-danger" role="alert">
         Do not refresh the page!!!

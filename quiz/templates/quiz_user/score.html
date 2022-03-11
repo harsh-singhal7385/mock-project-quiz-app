@@ -21,9 +21,64 @@
 </head>
 
 <body>
+    {% if user.is_authenticated %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light " href="/">QuizApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/leaderboard/">LeaderBoard</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <a href="/quiz_user/profile" data-toggle="tooltip" title="user profile"><img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" width="40vw" height="40vh" class="rounded-circle" alt="..."></a>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <p class="user_name_id text-light">Welcome - {{user}}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <a class="btn btn-outline-danger my-2 my-sm-0" class="btn btn-outline-success" href="/quiz_user/logout">Logout</a>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+    {% else %}
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light " href="/">QuizApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/leaderboard/">LeaderBoard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/register/">SignUp</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="/quiz_user/login/">Login</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+  
+  {% endif %}
+    
     <div class="container p-5">
         {% for post in data %}
-        <div class="p-5">
+        <div class="card p-5" >
             Welcome to score.html
             score : {{post.score}}
             <br />
