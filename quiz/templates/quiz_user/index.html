@@ -23,24 +23,24 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">QuizApp</a>
+      <a class="navbar-brand text-light " href="/">QuizApp</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="explore/">Explore</a>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/explore">Explore</a>
+            <a class="nav-link active text-light" aria-current="page" href="leaderboard/">LeaderBoard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/leaderboard">LeaderBoard</a>
+            <a class="nav-link active text-light" aria-current="page" href="signup/">SignUp</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/signup">SignUp</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/login">Login</a>
+            <a class="nav-link active text-light" aria-current="page" href="login/">Login</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -50,25 +50,23 @@
       </div>
     </div>
   </nav>
-  <div class="main my-4">
+  
+  <div class="main my-4" >     
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
+      <div class="carousel-inner" >
+        <div class="carousel-item active"  >
           <img src="https://source.unsplash.com/user/erondu/1200x400" class="d-block w-100 mx-0" alt="...">
           <div class="carousel-caption d-none d-md-block ">
             <h5>First slide label</h5>
             <p>Some representative placeholder content for the first slide.</p>
           </div>
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" >
           <img src="https://source.unsplash.com/user/erondu/1200x400" class="d-block w-100 mx-0" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
@@ -83,67 +81,43 @@
           </div>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <h5 align="center">Categories</h5>
-    <div class="testing  d-md-flex justify-content-center" width="20" text-align="center">
-      <div class="button my-4 ">
-        <a href="javascript/"><button class="btn btn-outline-primary me-md-4 btn-lg"
-            type="button">AngularTest</button></a>
-        <a href="python/"><button class="btn btn-outline-primary me-md-4 btn-lg" type="button">PythonTest</button></a>
-        <a href="java/"><button class="btn btn-outline-primary me-md-4 btn-lg" type="button">JavaScriptTest</button></a>
-        <a href="cpp/"><button class="btn btn-outline-primary me-md-4 btn-lg" type="button">C++Test</button></a>
-      </div>
+    
     </div>
+  <div class="display-5 bg-warning p-5 text-center">
+    Quizz Categories...
   </div>
-
-
-  {% comment %} <div class="container p-5">
-    <div class="container p-5">
-      <div class="row">
-        <div class="card col" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Javascript</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-              the
-              card's content.</p>
-            <a href="javascript/" class="btn btn-primary">Go somewhere</a>
-          </div>
+  <section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          {% for post in data %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <img class="card-img-top" src="https://picsum.photos/200/100" alt="{{post.category}} Category" />
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">{{post}}</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="showquiz/{{post.category}}/">Explore Category</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        <div class="card col" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Python</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-              the
-              card's content.</p>
-            <a href="python/" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <div class="card col" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Java</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-              the
-              card's content.</p>
-            <a href="java/" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</body> {% endcomment %}
+</section>
+
+</body> 
 </body>
 
 </html>

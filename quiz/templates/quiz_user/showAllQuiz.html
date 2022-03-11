@@ -21,19 +21,46 @@
 </head>
 
 <body>
-    <div class="container p-5">
-        <div class="row">
-            <div class="p-5 mt-3 mb-3">
-                <a href="begineer/test_questions_page/"> {{data}} Begineer</a>
+    <!-- <div class="container p-5">
+        <div class="p-5">
+          {% for post in data %}
+            <br />
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{post.category}}</h5>
+                <p class="card-text">{{post.subject_name}}</p>
+                <a href="/quiz_user/test_questions_page/{{post.subject_name}}/" class="btn btn-primary"> {{post.quiz_time}} </a>
+              </div>
             </div>
-            <div class="p-5 mt-3 mb-3">
-                <a href="intermediate/test_questions_page/">{{data}} Intermediate</a>
-            </div>
-            <div class="p-5 mt-3 mb-3">
-                <a href="advanced/test_questions_page/">{{data}} Advanced</a>
+            <br />
+          {% endfor %}
+        </div>
+      </div> -->
+
+      <div class="display-5 bg-warning p-5 text-center">
+        Quizz Section of Category...
+      </div>
+      <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+              {% for post in data %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="https://picsum.photos/200/100" alt="{{post.category}} Category" />
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder">{{post.subject_name}}</h5>
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/quiz_user/test_questions_page/{{post.subject_name}}/" >Start Test</a></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>
