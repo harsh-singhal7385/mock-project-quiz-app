@@ -5,6 +5,75 @@
     <link rel="stylesheet" href="{% static 'quiz_admin/css/viewallquiz.css' %}" type="text/css">
     </head>
 <body>
+    {% if user.is_authenticated %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light " href="/">QuizApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="explore/">Explore</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="leaderboard/">LeaderBoard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="logout/">Logout</a>
+            </li>
+            <!-- <li class="nav-item">
+              <p class="nav-link active text-light" aria-current="page" >Welcome  {{user}} </p>
+            </li> -->
+          </ul>
+          
+          <form class="d-flex">
+            <a href="/quiz_user/profile" data-toggle="tooltip" title="user profile"><img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" width="40vw" height="40vh" class="rounded-circle" alt="..."></a>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <p class="user_name_id text-light">Welcome - {{user}}</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <a class="btn btn-outline-danger my-2 my-sm-0" class="btn btn-outline-success" href="/quiz_user/logout">Logout</a>
+          </form>
+        </div>
+      </div>
+    </nav>
+  
+    {% else %}
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light " href="/">QuizApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="explore/">Explore</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="leaderboard/">LeaderBoard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="register/">SignUp</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="login/">Login</a>
+            </li>
+          </ul>
+          <!-- <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+        </div>
+      </div>
+    </nav>
+  
+  {% endif %}
     <div>
         <div class="row" style="margin: 20px;padding: 30px;border-color:black;">
 
@@ -49,7 +118,7 @@
             </div>
 
 
-
+        
             
 
 
